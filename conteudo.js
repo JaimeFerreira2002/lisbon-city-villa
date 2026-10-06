@@ -20,7 +20,7 @@ const SITE = {
   mapa: "https://maps.google.com/?q=Lisbon+City+Villa,+Travessa+de+Miguel+L%C3%BApi+3,+Lisboa",
 
   // ---------- WI-FI (igual para todos os quartos) ----------
-  wifiRede: "",  // nome da rede (vazio = não aparece)
+  wifiRede: "Lisbon City Villa",  // nome da rede (vazio = não aparece)
   wifiPass: "lovethisplace",
 
   // ---------- QUARTOS ----------

@@ -25,7 +25,6 @@ Os códigos QR **não mudam** quando edita o conteúdo. Só é preciso reimprimi
 
 ## Ainda por preencher
 
-- [ ] Nome da rede Wi‑Fi (`wifiRede`) — opcional
 - [ ] Logótipo (opcional)
 
 ## Publicar (grátis, GitHub Pages)
