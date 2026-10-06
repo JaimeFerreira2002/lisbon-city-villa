@@ -116,11 +116,12 @@
 
     let wifi;
     if (quarto) {
+      const rede = quarto.wifiRede || S.wifiRede, pass = quarto.wifiPass || S.wifiPass;
       wifi = `
         <div class="card wifi">
-          <div class="row"><span class="lbl">${u.rede}</span><strong>${esc(quarto.wifiRede)}</strong></div>
-          <div class="row"><span class="lbl">${u.pass}</span><strong class="mono">${esc(quarto.wifiPass)}</strong>
-            <button class="copy" type="button" data-copy="${esc(quarto.wifiPass)}">${u.copiar}</button></div>
+          ${rede ? `<div class="row"><span class="lbl">${u.rede}</span><strong>${esc(rede)}</strong></div>` : ""}
+          <div class="row"><span class="lbl">${u.pass}</span><strong class="mono">${esc(pass)}</strong>
+            <button class="copy" type="button" data-copy="${esc(pass)}">${u.copiar}</button></div>
           ${tr(quarto.nota) ? `<p class="note">${t(quarto.nota)}</p>` : ""}
         </div>`;
     } else {

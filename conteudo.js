@@ -19,15 +19,20 @@ const SITE = {
   morada: "Travessa de Miguel Lúpi, 3 · 1200-726 Lisboa",
   mapa: "https://maps.google.com/?q=Lisbon+City+Villa,+Travessa+de+Miguel+L%C3%BApi+3,+Lisboa",
 
+  // ---------- WI-FI (igual para todos os quartos) ----------
+  wifiRede: "",  // nome da rede (vazio = não aparece)
+  wifiPass: "ilovethisplace",
+
   // ---------- QUARTOS ----------
   // "id" aparece no link e no código QR (…/?quarto=pato). NÃO altere depois de imprimir os QR.
   // "icone" é opcional (um emoji).
+  // Se um quarto tiver Wi-Fi diferente, acrescente-lhe wifiRede: "…", wifiPass: "…".
   quartos: [
-    { id: "pato",    nome: "Pato",    icone: "🦆", wifiRede: "ALTERAR-REDE", wifiPass: "ALTERAR-PASSWORD", nota: "" },
-    { id: "coelho",  nome: "Coelho",  icone: "🐇", wifiRede: "ALTERAR-REDE", wifiPass: "ALTERAR-PASSWORD", nota: "" },
-    { id: "cavalo",  nome: "Cavalo",  icone: "🐎", wifiRede: "ALTERAR-REDE", wifiPass: "ALTERAR-PASSWORD", nota: "" },
-    { id: "sapo",    nome: "Sapo",    icone: "🐸", wifiRede: "ALTERAR-REDE", wifiPass: "ALTERAR-PASSWORD", nota: "" },
-    { id: "caracol", nome: "Caracol", icone: "🐌", wifiRede: "ALTERAR-REDE", wifiPass: "ALTERAR-PASSWORD", nota: "" },
+    { id: "pato",    nome: "Pato",    icone: "🦆", nota: "" },
+    { id: "coelho",  nome: "Coelho",  icone: "🐇", nota: "" },
+    { id: "cavalo",  nome: "Cavalo",  icone: "🐎", nota: "" },
+    { id: "sapo",    nome: "Sapo",    icone: "🐸", nota: "" },
+    { id: "caracol", nome: "Caracol", icone: "🐌", nota: "" },
   ],
 
   // ---------- CHECK-IN / CHECK-OUT ----------

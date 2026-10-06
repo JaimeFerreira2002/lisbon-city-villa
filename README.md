@@ -16,7 +16,7 @@ Um site simples para os hóspedes. Cada quarto tem um código QR que abre uma p�
 3. Carregue em **Commit changes**. O site atualiza em 1–2 minutos.
 
 Exemplos:
-- **Mudar a password do Wi‑Fi:** em `quartos`, altere o `wifiPass` do quarto.
+- **Mudar a password do Wi‑Fi:** altere `wifiPass` (é a mesma para todos os quartos).
 - **Esconder um campo:** deixe-o vazio, `""`.
 - **Acrescentar um restaurante:** copie uma linha `{ nome: …, morada: …, texto: … },` e altere-a.
 - **Pôr o logótipo:** carregue a imagem para a pasta `img/` e escreva `logotipo: "img/logo.png"`.
@@ -25,7 +25,7 @@ Os códigos QR **não mudam** quando edita o conteúdo. Só é preciso reimprimi
 
 ## Ainda por preencher
 
-- [ ] Rede e password do Wi‑Fi de cada quarto
+- [ ] Nome da rede Wi‑Fi (`wifiRede`) — opcional
 - [ ] Logótipo (opcional)
 
 ## Publicar (grátis, GitHub Pages)
