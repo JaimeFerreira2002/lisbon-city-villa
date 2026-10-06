@@ -21,7 +21,7 @@ const SITE = {
 
   // ---------- WI-FI (igual para todos os quartos) ----------
   wifiRede: "",  // nome da rede (vazio = não aparece)
-  wifiPass: "ilovethisplace",
+  wifiPass: "lovethisplace",
 
   // ---------- QUARTOS ----------
   // "id" aparece no link e no código QR (…/?quarto=pato). NÃO altere depois de imprimir os QR.
