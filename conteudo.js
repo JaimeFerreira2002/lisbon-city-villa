@@ -42,8 +42,8 @@ const SITE = {
 
   // ---------- CONTACTOS ----------
   contactos: {
-    telefone: "+351 900 000 000", // ALTERAR — aparece como botão "Ligar"
-    whatsapp: "351900000000",     // ALTERAR — só números, com indicativo, sem "+"
+    telefone: "+351 918 368 626", // aparece como botão "Ligar"
+    whatsapp: "351918368626",     // só números, com indicativo, sem "+"
     email: "",
   },
   contactosUteis: [

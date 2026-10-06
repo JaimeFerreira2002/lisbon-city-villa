@@ -26,7 +26,6 @@ Os códigos QR **não mudam** quando edita o conteúdo. Só é preciso reimprimi
 ## Ainda por preencher
 
 - [ ] Rede e password do Wi‑Fi de cada quarto
-- [ ] Telefone e WhatsApp do anfitrião (`contactos`)
 - [ ] Logótipo (opcional)
 
 ## Publicar (grátis, GitHub Pages)
