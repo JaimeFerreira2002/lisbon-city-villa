@@ -86,7 +86,7 @@
     const query = p.mapaQuery || `${tr(p.nome)}${p.morada ? ", " + p.morada : ""}, Lisboa`;
     return `
       <a class="place" href="${esc(p.mapaUrl || mapsUrl(query))}" target="_blank" rel="noopener">
-        <div><h3>${t(p.nome)}</h3>${p.morada ? `<p class="addr">${esc(p.morada)}</p>` : ""}<p>${t(p.texto)}</p></div>${pin}</a>`;
+        <div><h3>${t(p.nome)}</h3>${p.morada ? `<p class="addr">${esc(p.morada)}</p>` : ""}${tr(p.texto) ? `<p>${t(p.texto)}</p>` : ""}</div>${pin}</a>`;
   }
 
   function render() {

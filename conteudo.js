@@ -173,7 +173,7 @@ const SITE = {
     { categoria: { pt: "Supermercados", en: "Supermarkets", fr: "Supermarchés", es: "Supermercados" }, itens: [
       { nome: "Pingo Doce", morada: "Rua Jorge Alves, 8",
         mapaUrl: "https://www.google.com/maps/place/Pingo+Doce/@38.7101412,-9.1587797,880m/data=!3m2!1e3!4b1!4m6!3m5!1s0xd193482cec10cb3:0x568b671c55289a4b!8m2!3d38.710137!4d-9.1562048",
-        texto: { pt: "Mesmo ao lado de casa.", en: "Right next to the house.", fr: "Juste à côté de la maison.", es: "Justo al lado de casa." } },
+        texto: "" },
       { nome: { pt: "Outras opções", en: "Other options", fr: "Autres options", es: "Otras opciones" },
         mapaQuery: "supermercado perto de Travessa de Miguel Lúpi, Lisboa",
         texto: { pt: "Existem mercearias e supermercados na Estrela, em Santos e em Campo de Ourique.",
@@ -202,10 +202,10 @@ const SITE = {
   restaurantes: [
     { nome: "Time Out Market Lisboa", morada: "Mercado da Ribeira, Cais do Sodré",
       mapaUrl: "https://www.google.com/maps/place//data=!4m2!3m1!1s0xd193487595e6075:0x138fe14e4972dc92",
-      texto: { pt: "Ali perto: mercado com dezenas de restaurantes e bancas de comida portuguesa e internacional.",
-               en: "Close by: a food hall with dozens of Portuguese and international restaurants and stalls.",
-               fr: "Tout près : une halle avec des dizaines de restaurants et stands de cuisine portugaise et internationale.",
-               es: "Muy cerca: un mercado con decenas de restaurantes y puestos de comida portuguesa e internacional." } },
+      texto: { pt: "Mercado com dezenas de restaurantes e bancas de comida portuguesa e internacional.",
+               en: "A food hall with dozens of Portuguese and international restaurants and stalls.",
+               fr: "Une halle avec des dizaines de restaurants et stands de cuisine portugaise et internationale.",
+               es: "Un mercado con decenas de restaurantes y puestos de comida portuguesa e internacional." } },
     { nome: "Clube de Jornalistas", morada: "Rua das Trinas, 129",
       texto: { pt: "Ambiente intimista; aconselha-se reserva.", en: "Intimate atmosphere; booking recommended.",
                fr: "Ambiance intimiste ; réservation conseillée.", es: "Ambiente íntimo; se recomienda reservar." } },
