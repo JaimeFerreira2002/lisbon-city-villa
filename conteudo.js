@@ -171,7 +171,7 @@ const SITE = {
   // ---------- SERVIÇOS ÚTEIS ----------
   servicos: [
     { categoria: { pt: "Supermercados", en: "Supermarkets", fr: "Supermarchés", es: "Supermercados" }, itens: [
-      { nome: "Pingo Doce",
+      { nome: "Pingo Doce", morada: "Rua Jorge Alves, 8",
         mapaUrl: "https://www.google.com/maps/place/Pingo+Doce/@38.7101412,-9.1587797,880m/data=!3m2!1e3!4b1!4m6!3m5!1s0xd193482cec10cb3:0x568b671c55289a4b!8m2!3d38.710137!4d-9.1562048",
         texto: { pt: "Mesmo ao lado de casa.", en: "Right next to the house.", fr: "Juste à côté de la maison.", es: "Justo al lado de casa." } },
       { nome: { pt: "Outras opções", en: "Other options", fr: "Autres options", es: "Otras opciones" },
@@ -192,7 +192,7 @@ const SITE = {
                  en: "Avenida Infante Santo, 68. Another nearby self-service option.",
                  fr: "Avenida Infante Santo, 68. Autre laverie libre-service à proximité.",
                  es: "Avenida Infante Santo, 68. Otra opción de autoservicio cercana." } },
-      { nome: "Arte d'Lavar Lapa",
+      { nome: "Arte d'Lavar Lapa", morada: "Rua da Bela Vista à Lapa, 22",
         mapaUrl: "https://www.google.com/maps/place/Arte+d'lavar+Lapa/@38.7126504,-9.1583853,220m/data=!3m1!1e3!4m6!3m5!1s0xd1933c6dd6b723f:0xfe67a67b6f16fc57!8m2!3d38.7126887!4d-9.1586042",
         texto: { pt: "Outra lavandaria na zona.", en: "Another laundry in the area.", fr: "Une autre laverie dans le quartier.", es: "Otra lavandería en la zona." } },
     ]},
