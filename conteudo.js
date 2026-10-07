@@ -27,6 +27,7 @@ const SITE = {
   // "id" aparece no link e no código QR (…/?quarto=pato). NÃO altere depois de imprimir os QR.
   // "icone" é opcional (um emoji).
   // Se um quarto tiver Wi-Fi diferente, acrescente-lhe wifiRede: "…", wifiPass: "…".
+  // "codigoPorta" (opcional) mostra um código de porta na página do quarto.
   quartos: [
     { id: "pato",    nome: "Pato",    icone: "🦆", nota: "" },
     { id: "coelho",  nome: "Coelho",  icone: "🐇", nota: "" },
@@ -84,6 +85,11 @@ const SITE = {
                 en: "Please don't throw cigarette butts in the garden. Use an ashtray, or ask us for one — we'll be happy to provide it.",
                 fr: "Ne jetez pas de mégots dans le jardin. Utilisez un cendrier ou demandez-nous-en un, nous vous le fournirons avec plaisir.",
                 es: "No tire colillas al jardín. Utilice un cenicero o pídanos uno, se lo daremos con mucho gusto." } },
+    { titulo: { pt: "Ar condicionado", en: "Air conditioning", fr: "Climatisation", es: "Aire acondicionado" },
+      texto:  { pt: "Desligue o ar condicionado quando abrir as janelas e sempre que sair do quarto.",
+                en: "Please switch off the air conditioning when you open the windows and whenever you leave the room.",
+                fr: "Merci d'éteindre la climatisation lorsque vous ouvrez les fenêtres et chaque fois que vous quittez la chambre.",
+                es: "Apague el aire acondicionado cuando abra las ventanas y siempre que salga de la habitación." } },
   ],
   regrasNota: {
     pt: "Obrigado pela sua compreensão! Pequenos gestos ajudam-nos a cuidar da casa, do jardim e da boa relação com a vizinhança.",
@@ -165,8 +171,9 @@ const SITE = {
   // ---------- SERVIÇOS ÚTEIS ----------
   servicos: [
     { categoria: { pt: "Supermercados", en: "Supermarkets", fr: "Supermarchés", es: "Supermercados" }, itens: [
-      { nome: "Pingo Doce Lapa", mapaQuery: "Pingo Doce, Rua de Sant'Ana à Lapa 56, Lisboa",
-        texto: "Rua de Sant’Ana à Lapa, 56." },
+      { nome: "Pingo Doce",
+        mapaUrl: "https://www.google.com/maps/place/Pingo+Doce/@38.7101412,-9.1587797,880m/data=!3m2!1e3!4b1!4m6!3m5!1s0xd193482cec10cb3:0x568b671c55289a4b!8m2!3d38.710137!4d-9.1562048",
+        texto: { pt: "Mesmo ao lado de casa.", en: "Right next to the house.", fr: "Juste à côté de la maison.", es: "Justo al lado de casa." } },
       { nome: { pt: "Outras opções", en: "Other options", fr: "Autres options", es: "Otras opciones" },
         mapaQuery: "supermercado perto de Travessa de Miguel Lúpi, Lisboa",
         texto: { pt: "Existem mercearias e supermercados na Estrela, em Santos e em Campo de Ourique.",
@@ -185,11 +192,20 @@ const SITE = {
                  en: "Avenida Infante Santo, 68. Another nearby self-service option.",
                  fr: "Avenida Infante Santo, 68. Autre laverie libre-service à proximité.",
                  es: "Avenida Infante Santo, 68. Otra opción de autoservicio cercana." } },
+      { nome: "Arte d'Lavar Lapa",
+        mapaUrl: "https://www.google.com/maps/place/Arte+d'lavar+Lapa/@38.7126504,-9.1583853,220m/data=!3m1!1e3!4m6!3m5!1s0xd1933c6dd6b723f:0xfe67a67b6f16fc57!8m2!3d38.7126887!4d-9.1586042",
+        texto: { pt: "Outra lavandaria na zona.", en: "Another laundry in the area.", fr: "Une autre laverie dans le quartier.", es: "Otra lavandería en la zona." } },
     ]},
   ],
 
   // ---------- BARES, CAFÉS E RESTAURANTES ----------
   restaurantes: [
+    { nome: "Time Out Market Lisboa", morada: "Mercado da Ribeira, Cais do Sodré",
+      mapaUrl: "https://www.google.com/maps/place//data=!4m2!3m1!1s0xd193487595e6075:0x138fe14e4972dc92",
+      texto: { pt: "Ali perto: mercado com dezenas de restaurantes e bancas de comida portuguesa e internacional.",
+               en: "Close by: a food hall with dozens of Portuguese and international restaurants and stalls.",
+               fr: "Tout près : une halle avec des dizaines de restaurants et stands de cuisine portugaise et internationale.",
+               es: "Muy cerca: un mercado con decenas de restaurantes y puestos de comida portuguesa e internacional." } },
     { nome: "Clube de Jornalistas", morada: "Rua das Trinas, 129",
       texto: { pt: "Ambiente intimista; aconselha-se reserva.", en: "Intimate atmosphere; booking recommended.",
                fr: "Ambiance intimiste ; réservation conseillée.", es: "Ambiente íntimo; se recomienda reservar." } },

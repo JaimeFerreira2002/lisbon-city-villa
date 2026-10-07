@@ -5,7 +5,7 @@
 
   const UI = {
     pt: {
-      guia: "Guia do hóspede", quarto: "Quarto", escolha: "Escolha o seu quarto",
+      codigo: "Código da porta", guia: "Guia do hóspede", quarto: "Quarto", escolha: "Escolha o seu quarto",
       wifi: "Wi‑Fi", rede: "Rede", pass: "Palavra-passe", copiar: "Copiar", copiado: "Copiado ✓",
       checkin: "Check-in", checkout: "Check-out", instrucoes: "Antes de sair",
       regras: "Regras da casa", zona: "Descobrir a zona", transportes: "Transportes",
@@ -16,7 +16,7 @@
       nav: ["Wi‑Fi", "Regras", "Zona", "Transportes", "Serviços", "Comer", "Contactos"],
     },
     en: {
-      guia: "Guest guide", quarto: "Room", escolha: "Choose your room",
+      codigo: "Door code", guia: "Guest guide", quarto: "Room", escolha: "Choose your room",
       wifi: "Wi‑Fi", rede: "Network", pass: "Password", copiar: "Copy", copiado: "Copied ✓",
       checkin: "Check-in", checkout: "Check-out", instrucoes: "Before you leave",
       regras: "House rules", zona: "Explore the area", transportes: "Getting around",
@@ -27,7 +27,7 @@
       nav: ["Wi‑Fi", "Rules", "Area", "Transport", "Services", "Eat", "Contacts"],
     },
     fr: {
-      guia: "Guide du voyageur", quarto: "Chambre", escolha: "Choisissez votre chambre",
+      codigo: "Code de la porte", guia: "Guide du voyageur", quarto: "Chambre", escolha: "Choisissez votre chambre",
       wifi: "Wi‑Fi", rede: "Réseau", pass: "Mot de passe", copiar: "Copier", copiado: "Copié ✓",
       checkin: "Arrivée", checkout: "Départ", instrucoes: "Avant de partir",
       regras: "Règles de la maison", zona: "Découvrir le quartier", transportes: "Transports",
@@ -38,7 +38,7 @@
       nav: ["Wi‑Fi", "Règles", "Quartier", "Transports", "Services", "Manger", "Contacts"],
     },
     es: {
-      guia: "Guía del huésped", quarto: "Habitación", escolha: "Elija su habitación",
+      codigo: "Código de la puerta", guia: "Guía del huésped", quarto: "Habitación", escolha: "Elija su habitación",
       wifi: "Wi‑Fi", rede: "Red", pass: "Contraseña", copiar: "Copiar", copiado: "Copiado ✓",
       checkin: "Check-in", checkout: "Check-out", instrucoes: "Antes de salir",
       regras: "Normas de la casa", zona: "Descubrir la zona", transportes: "Transporte",
@@ -85,7 +85,7 @@
   function place(p) {
     const query = p.mapaQuery || `${tr(p.nome)}${p.morada ? ", " + p.morada : ""}, Lisboa`;
     return `
-      <a class="place" href="${mapsUrl(query)}" target="_blank" rel="noopener">
+      <a class="place" href="${esc(p.mapaUrl || mapsUrl(query))}" target="_blank" rel="noopener">
         <div><h3>${t(p.nome)}</h3>${p.morada ? `<p class="addr">${esc(p.morada)}</p>` : ""}<p>${t(p.texto)}</p></div>${pin}</a>`;
   }
 
@@ -122,6 +122,7 @@
           ${rede ? `<div class="row"><span class="lbl">${u.rede}</span><strong>${esc(rede)}</strong></div>` : ""}
           <div class="row"><span class="lbl">${u.pass}</span><strong class="mono">${esc(pass)}</strong>
             <button class="copy" type="button" data-copy="${esc(pass)}">${u.copiar}</button></div>
+          ${quarto.codigoPorta ? `<div class="row"><span class="lbl">${u.codigo}</span><strong class="mono">${esc(quarto.codigoPorta)}</strong></div>` : ""}
           ${tr(quarto.nota) ? `<p class="note">${t(quarto.nota)}</p>` : ""}
         </div>`;
     } else {
