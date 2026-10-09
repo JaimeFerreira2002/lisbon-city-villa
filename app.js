@@ -5,7 +5,7 @@
 
   const UI = {
     pt: {
-      codigo: "Código da porta", guia: "Guia do hóspede", quarto: "Quarto", escolha: "Escolha o seu quarto",
+      guia: "Guia do hóspede",
       wifi: "Wi‑Fi", rede: "Rede", pass: "Palavra-passe", copiar: "Copiar", copiado: "Copiado ✓",
       checkin: "Check-in", checkout: "Check-out", instrucoes: "Antes de sair",
       regras: "Regras da casa", zona: "Descobrir a zona", transportes: "Transportes",
@@ -16,7 +16,7 @@
       nav: ["Wi‑Fi", "Regras", "Zona", "Transportes", "Serviços", "Comer", "Contactos"],
     },
     en: {
-      codigo: "Door code", guia: "Guest guide", quarto: "Room", escolha: "Choose your room",
+      guia: "Guest guide",
       wifi: "Wi‑Fi", rede: "Network", pass: "Password", copiar: "Copy", copiado: "Copied ✓",
       checkin: "Check-in", checkout: "Check-out", instrucoes: "Before you leave",
       regras: "House rules", zona: "Explore the area", transportes: "Getting around",
@@ -27,7 +27,7 @@
       nav: ["Wi‑Fi", "Rules", "Area", "Transport", "Services", "Eat", "Contacts"],
     },
     fr: {
-      codigo: "Code de la porte", guia: "Guide du voyageur", quarto: "Chambre", escolha: "Choisissez votre chambre",
+      guia: "Guide du voyageur",
       wifi: "Wi‑Fi", rede: "Réseau", pass: "Mot de passe", copiar: "Copier", copiado: "Copié ✓",
       checkin: "Arrivée", checkout: "Départ", instrucoes: "Avant de partir",
       regras: "Règles de la maison", zona: "Découvrir le quartier", transportes: "Transports",
@@ -38,7 +38,7 @@
       nav: ["Wi‑Fi", "Règles", "Quartier", "Transports", "Services", "Manger", "Contacts"],
     },
     es: {
-      codigo: "Código de la puerta", guia: "Guía del huésped", quarto: "Habitación", escolha: "Elija su habitación",
+      guia: "Guía del huésped",
       wifi: "Wi‑Fi", rede: "Red", pass: "Contraseña", copiar: "Copiar", copiado: "Copiado ✓",
       checkin: "Check-in", checkout: "Check-out", instrucoes: "Antes de salir",
       regras: "Normas de la casa", zona: "Descubrir la zona", transportes: "Transporte",
@@ -66,8 +66,6 @@
   }
 
   let lang = detectLang();
-  const params = new URLSearchParams(location.search);
-  const quarto = S.quartos.find((q) => q.id === params.get("quarto"));
 
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   // Texto na língua atual; se faltar a tradução, usa inglês e depois português.
@@ -75,7 +73,6 @@
   const t = (v) => esc(tr(v));
   const mapsUrl = (q) => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
   const tel = (n) => "tel:" + String(n).replace(/[^\d+]/g, "");
-  const roomLabel = (q) => `${q.icone ? `<span class="ico">${esc(q.icone)}</span>` : ""}${esc(q.nome)}`;
   const pin = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>';
 
   function section(id, title, body) {
@@ -92,7 +89,7 @@
   function render() {
     const u = UI[lang];
     document.documentElement.lang = lang;
-    document.title = `${quarto ? quarto.nome + " · " : ""}${S.nome} · ${u.guia}`;
+    document.title = `${S.nome} · ${u.guia}`;
 
     const logo = S.logotipo
       ? `<img class="logo" src="${esc(S.logotipo)}" alt="${esc(S.nome)}">`
@@ -105,7 +102,7 @@
       <header class="hero">
         <div class="hero-top">${logo}${langs}</div>
         <div class="hero-body">
-          ${quarto ? `<p class="room-badge">${u.quarto} ${roomLabel(quarto)}</p>` : `<p class="eyebrow">${u.guia}</p>`}
+          <p class="eyebrow">${u.guia}</p>
           <h1>${t(S.boasVindas.titulo)}</h1>
           <p class="lead">${t(S.boasVindas.texto)}</p>
         </div>
@@ -114,21 +111,12 @@
     const nav = `<nav class="chips">${["wifi", "regras", "zona", "transportes", "servicos", "comer", "contactos"]
       .map((id, i) => `<a href="#${id}">${u.nav[i]}</a>`).join("")}</nav>`;
 
-    let wifi;
-    if (quarto) {
-      const rede = quarto.wifiRede || S.wifiRede, pass = quarto.wifiPass || S.wifiPass;
-      wifi = `
-        <div class="card wifi">
-          ${rede ? `<div class="row"><span class="lbl">${u.rede}</span><strong>${esc(rede)}</strong></div>` : ""}
-          <div class="row"><span class="lbl">${u.pass}</span><strong class="mono">${esc(pass)}</strong>
-            <button class="copy" type="button" data-copy="${esc(pass)}">${u.copiar}</button></div>
-          ${quarto.codigoPorta ? `<div class="row"><span class="lbl">${u.codigo}</span><strong class="mono">${esc(quarto.codigoPorta)}</strong></div>` : ""}
-          ${tr(quarto.nota) ? `<p class="note">${t(quarto.nota)}</p>` : ""}
-        </div>`;
-    } else {
-      wifi = `<div class="card"><p class="lbl">${u.escolha}</p><div class="rooms">${S.quartos
-        .map((q) => `<a href="?quarto=${encodeURIComponent(q.id)}">${roomLabel(q)}</a>`).join("")}</div></div>`;
-    }
+    const wifi = `
+      <div class="card wifi">
+        ${S.wifiRede ? `<div class="row"><span class="lbl">${u.rede}</span><strong>${esc(S.wifiRede)}</strong></div>` : ""}
+        <div class="row"><span class="lbl">${u.pass}</span><strong class="mono">${esc(S.wifiPass)}</strong>
+          <button class="copy" type="button" data-copy="${esc(S.wifiPass)}">${u.copiar}</button></div>
+      </div>`;
     const horas = `
       <div class="times">
         <div class="card time"><span class="lbl">${u.checkin}</span><strong>${t(S.checkin)}</strong></div>
@@ -165,7 +153,7 @@
     document.getElementById("app").innerHTML = `
       ${header}${nav}
       <main>
-        ${section("wifi", quarto ? `${u.wifi} · ${esc(quarto.nome)}` : u.wifi, wifi + horas)}
+        ${section("wifi", u.wifi, wifi + horas)}
         ${section("regras", u.regras, regras)}
         ${section("zona", u.zona, zona)}
         ${section("transportes", u.transportes, transp)}

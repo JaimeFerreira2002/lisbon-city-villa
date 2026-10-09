@@ -12,6 +12,7 @@
     body { margin: 0; background: #eee; font-family: Inter, system-ui, sans-serif; color: #1b2233; }
     .bar { padding: 16px; text-align: center; }
     .bar button { font: 600 15px Inter, sans-serif; padding: 10px 20px; border-radius: 10px; border: 0; background: #f2b705; color: #1f1d1a; cursor: pointer; }
+    .bar input { width: 56px; font: 15px Inter, sans-serif; padding: 8px; margin: 0 12px 0 6px; border: 1px solid #ccc; border-radius: 8px; }
     .bar p { color: #5d6475; font-size: 14px; }
     .sheet { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; padding: 0 16px 32px; }
     .card {
@@ -20,8 +21,8 @@
     }
     .top { background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='%23f2b705'%3E%3Cpath d='M0 0h14A14 14 0 0 1 0 14z'/%3E%3Cpath d='M60 0v14A14 14 0 0 1 46 0z'/%3E%3Cpath d='M60 60H46a14 14 0 0 1 14-14z'/%3E%3Cpath d='M0 60V46a14 14 0 0 1 14 14z'/%3E%3Cellipse cx='30' cy='19' rx='4.5' ry='8.5'/%3E%3Cellipse cx='30' cy='41' rx='4.5' ry='8.5'/%3E%3Cellipse cx='19' cy='30' rx='8.5' ry='4.5'/%3E%3Cellipse cx='41' cy='30' rx='8.5' ry='4.5'/%3E%3C/g%3E%3Ccircle cx='30' cy='30' r='3.5' fill='%23fff' stroke='%23f2b705' stroke-width='2'/%3E%3Cpath d='M30 3 57 30 30 57 3 30z' fill='none' stroke='%23f2b705' stroke-width='1.4'/%3E%3C/svg%3E") center / 10mm 10mm; padding: 5mm; border-bottom: 1mm solid #f2b705; }
     .top div { background: #fff; border: 0.5mm solid #f2b705; border-radius: 3mm; padding: 3mm; }
-    .top b { font: 600 15px Fraunces, Georgia, serif; display: block; }
-    .top span { font: 600 26px Fraunces, Georgia, serif; display: block; margin-top: 1mm; }
+    .top b { font: 600 12px Inter, sans-serif; letter-spacing: .14em; text-transform: uppercase; display: block; }
+    .top span { font: 600 24px Fraunces, Georgia, serif; display: block; margin-top: 1mm; }
     .qr { padding: 6mm; display: flex; justify-content: center; }
     .qr img, .qr canvas { width: 50mm !important; height: 50mm !important; }
     .cta { padding: 0 5mm 6mm; font-size: 13px; line-height: 1.5; }
@@ -35,23 +36,29 @@
 </head>
 <body>
   <div class="bar">
+    <label>Cópias <input id="n" type="number" min="1" max="12" value="6"></label>
     <button onclick="print()">Imprimir</button>
-    <p>Um cartão por quarto. Os códigos apontam para: <code id="base"></code></p>
+    <p>Todos os cartões têm o mesmo código, que aponta para: <code id="base"></code></p>
   </div>
   <div class="sheet" id="sheet"></div>
   <script>
     const base = SITE.url.endsWith("/") ? SITE.url : SITE.url + "/";
     document.getElementById("base").textContent = base;
-    for (const q of SITE.quartos) {
-      const el = document.createElement("div");
-      el.className = "card";
-      el.innerHTML = `
-        <div class="top"><div><b>${SITE.nome}</b><span>${q.icone || ""} ${q.nome}</span></div></div>
-        <div class="qr"></div>
-        <div class="cta"><strong>Wi‑Fi · Check-out · Lisboa</strong>Guia · Guide · Guide · Guía<br>PT · EN · FR · ES</div>`;
-      document.getElementById("sheet").appendChild(el);
-      new QRCode(el.querySelector(".qr"), { text: base + "?quarto=" + encodeURIComponent(q.id), width: 400, height: 400, colorDark: "#1f1d1a", correctLevel: QRCode.CorrectLevel.M });
+    // Gera o QR uma vez e copia a imagem para cada cartão.
+    const tmp = document.createElement("div");
+    new QRCode(tmp, { text: base, width: 400, height: 400, colorDark: "#1f1d1a", correctLevel: QRCode.CorrectLevel.M });
+    const qrSrc = tmp.querySelector("canvas").toDataURL();
+    function draw() {
+      const n = Math.min(12, Math.max(1, +document.getElementById("n").value || 1));
+      document.getElementById("sheet").innerHTML = Array.from({ length: n }, () => `
+        <div class="card">
+          <div class="top"><div><b>Guest guide</b><span>${SITE.nome}</span></div></div>
+          <div class="qr"><img src="${qrSrc}" alt="QR"></div>
+          <div class="cta"><strong>Wi‑Fi · Check-out · Lisboa</strong>Guia · Guide · Guide · Guía<br>PT · EN · FR · ES</div>
+        </div>`).join("");
     }
+    document.getElementById("n").oninput = draw;
+    draw();
   </script>
 </body>
 </html>

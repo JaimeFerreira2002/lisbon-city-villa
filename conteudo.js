@@ -19,22 +19,10 @@ const SITE = {
   morada: "Travessa de Miguel Lúpi, 3 · 1200-726 Lisboa",
   mapa: "https://maps.google.com/?q=Lisbon+City+Villa,+Travessa+de+Miguel+L%C3%BApi+3,+Lisboa",
 
-  // ---------- WI-FI (igual para todos os quartos) ----------
+  // ---------- WI-FI ----------
   wifiRede: "Lisbon City Villa",  // nome da rede (vazio = não aparece)
   wifiPass: "lovethisplace",
 
-  // ---------- QUARTOS ----------
-  // "id" aparece no link e no código QR (…/?quarto=pato). NÃO altere depois de imprimir os QR.
-  // "icone" é opcional (um emoji).
-  // Se um quarto tiver Wi-Fi diferente, acrescente-lhe wifiRede: "…", wifiPass: "…".
-  // "codigoPorta" (opcional) mostra um código de porta na página do quarto.
-  quartos: [
-    { id: "pato",    nome: "Pato",    icone: "🦆", nota: "" },
-    { id: "coelho",  nome: "Coelho",  icone: "🐇", nota: "" },
-    { id: "cavalo",  nome: "Cavalo",  icone: "🐎", nota: "" },
-    { id: "sapo",    nome: "Sapo",    icone: "🐸", nota: "" },
-    { id: "caracol", nome: "Caracol", icone: "🐌", nota: "" },
-  ],
 
   // ---------- CHECK-IN / CHECK-OUT ----------
   checkin:  { pt: "15h00 – 22h00", en: "3:00 pm – 10:00 pm", fr: "15h00 – 22h00", es: "15:00 – 22:00" },
